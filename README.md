@@ -16,6 +16,7 @@ Liste des étapes de création du mini-projet
 3. Création des entités de la BDD :
 - php bin/console make:entity
 
+
 4. Création de la BDD :
 - composer require symfony/orm-pack
 - composer require --dev symfony/maker-bundle
@@ -61,3 +62,38 @@ assets:
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
       {% endblock %} {# stylesheets #}
     </head>
+    
+    
+Coucou !! Petit point sur ce que j'ai fait :
+1) Création de la BDD et des CRUD aux entités qu'on avait fait ensemble (Region, Owner,Room,UnvailablePeriod,Client) 
+2) J'ai push après ça parce que je me suis dit que tu risquais pas de faire des changements la dessus donc c une version à laquelle tu peux revenir si jamais ce que j'ai fait après va pas 
+3) Création de l'entité réservation:
+attributs: 
+- ReservationId (int)
+- ReservationAdress (text) à matcher avec l'adresse de la Room 
+- StartDate (datetime)
+- EndDate (datetime)
+- HostName (String) nom du Owner
+- GuestName (String) nom du client
+- NumberGuests (int) 
+- NumberNights (int) nombre de nuit pdt le séjour (simplifier le calcul du prix) 
+- PaymentTotal (float (on sait  jamais meme si je sais que les prix sont des int .. g réfléchi trop tard...)) nombre de nuit x prix (par nuit)
+4) migration dans la BDD 
+5) création du CRUD associé 
+6) création entité comment: 
+attributs: 
+- CommentId (int) 
+- content (text) 
+- created (datetime) 
+- author (String) à matcher avec client's name
+- ReservationIdComment (int) id de la réservation concernée par ce commentaire 
+7) migration dans la BDD 
+8) création du CRUD associé
+9) PUSH
+
+Il y a probablement des trucs à modifier je me suis basée sur les mails de réservations qu'envoie airbnb à la suite des réservations (je t'en ai forwardé un) hésite pas à tout changer mdr. 
+
+Des BISOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS
+Je t'aime 
+
+
