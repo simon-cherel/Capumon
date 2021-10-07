@@ -4,7 +4,7 @@ Mini-projet php
 Liste des étapes de création du mini-projet
 
 1. Création du projet :
-- composer create-project symfony/website-skeleton:"^4.4" capumon-app
+- composer create-project symfony/website-skeleton:"^4.4" 
 - composer require symfony/web-server-bundle --dev
 
 2. Création du Git :
