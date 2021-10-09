@@ -47,6 +47,18 @@ class Room
      */
     private $address;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Owner::class, inversedBy="room")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class, inversedBy="Room")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +132,30 @@ class Room
     public function setAddress(int $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

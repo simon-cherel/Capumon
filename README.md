@@ -79,15 +79,22 @@ attributs:
 - NumberNights (int) nombre de nuit pdt le séjour (simplifier le calcul du prix) 
 - PaymentTotal (float (on sait  jamais meme si je sais que les prix sont des int .. g réfléchi trop tard...)) nombre de nuit x prix (par nuit)
 4) migration dans la BDD 
-5) création du CRUD associé 
+
+5) création du CRUD associé :
+bin/console make:crud
+
 6) création entité comment: 
 attributs: 
 - CommentId (int) 
 - content (text) 
 - created (datetime) 
 - author (String) à matcher avec client's name
-- ReservationIdComment (int) id de la réservation concernée par ce commentaire 
-7) migration dans la BDD 
+- ReservationIdComment (int) id de la réservation concernée par ce commentaire
+ 
+7) migration dans la BDD :
+bin/console make:migration
+bin/console doctrine:migrations:migrate
+
 8) création du CRUD associé
 9) PUSH
 
@@ -95,5 +102,7 @@ Il y a probablement des trucs à modifier je me suis basée sur les mails de ré
 
 Des BISOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS
 Je t'aime 
+
+10) bin/console make:entity
 
 
