@@ -35,6 +35,14 @@
              <ul class="navbar-nav mr-auto">
                 {{ render_bootstrap_menu('main') }}
              </ul>
+             <ul class="navbar-nav ms-auto d-grid gap-2 d-md-flex justify-content-md-end">
+             <button class="btn btn-outline-light me-2" type="button">
+                {{ render_bootstrap_menu('main_droit_1') }}
+                </button>
+             <button class="btn btn-secondary" type="button" style="color:red">
+              {{ render_bootstrap_menu('main_droit_2') }}
+                </button>
+             </ul>
           </div>
         </div>
      </nav>

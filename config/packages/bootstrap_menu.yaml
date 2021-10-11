@@ -23,3 +23,15 @@ bootstrap_menu:
         unavailablePeriode:
           label: "Unavailable Periode"
           route: "unavailable_period_index"
+
+    main_droit_1:
+      items:
+        sign-up:
+          label: "Sign-up"
+          route: "sign-up"
+
+    main_droit_2:
+      items:
+        login:
+          label: "Login"
+          route: "login"
