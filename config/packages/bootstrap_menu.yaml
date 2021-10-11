@@ -4,23 +4,22 @@ bootstrap_menu:
       items:
         client:
           label: "Client"
-          route: "client_list"
+          route: "client_index"
         comment:
           label: "Comment"
-          route: "comment_list"
+          route: "comment_index"
         owner:
           label: "Owner"
-          route: "owner_list"
+          route: "owner_index"
         region:
           label: "Region"
-          route: "region_list"
+          route: "region_index"
         reservation:
           label: "Reservation"
-          route: "reservation_list"
+          route: "reservation_index"
         room:
           label: "Room"
-          route: "room_list"
-        unvailablePeriode:
-          label: "Unvailable Periode"
-          route: "unvailablePeriode_list"
-
+          route: "room_index"
+        unavailablePeriode:
+          label: "Unavailable Periode"
+          route: "unavailable_period_index"
