@@ -6,7 +6,7 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
            <!-- favicon-->
-          <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+          <link rel="icon" type="image/x-icon" href="{{ asset("assets/favicon.ico")}}">
         
         {% block javascripts %}
              <!-- Bootstrap core JS-->
@@ -68,13 +68,26 @@
   </div> <!-- /.body-container -->
 
   {% block footer %}
-  <div class="row">
-    <div class="col-md-12">
-      <footer>
-        <p>FOOTER</p>
-      </footer>
+ 
+  <footer class="fixed-bottom d-flex justify-content-around align-items-center border-top">
+    <div class="text-center w-25 m-4">
+    <span class="text-muted">© Capumon, by Caps & Simon</span>
     </div>
-  </div>
+
+    <div class="m-4 w-50  text-center">
+   <a href="/" class=" text-center">
+      <img   width="40px" height="40"  src="{{ asset("assets/favicon.ico")}}">
+    </a>
+    </div>
+   
+
+ 
+      <div class="w-25 nav-item m-4 text-center"><a  href="contact" class=" nav-link text-muted">Contact</a></div>
+
+ 
+  </footer>
+
+  
   {% endblock %}{# footer #}
 
 
