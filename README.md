@@ -105,4 +105,19 @@ Je t'aime
 
 10) bin/console make:entity
 
+        owner:
+          label: "Owner"
+          route: "owner_list"
+        region:
+          label: "Region"
+          route: "region_list"
+        reservation:
+          label: "Reservation"
+          route: "reservation_list"
+        room:
+          label: "Room"
+          route: "room_list"
+        unvailablePeriode:
+          label: "Unvailable Periode"
+          route: "unvailablePeriode_list"
 
