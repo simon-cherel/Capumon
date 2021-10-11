@@ -35,13 +35,13 @@ class Region
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity=Room::class, mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Room::class, mappedBy="region")
      */
-    private $Room;
+    private $room;
 
     public function __construct()
     {
-        $this->Room = new ArrayCollection();
+        $this->room = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,13 +90,13 @@ class Region
      */
     public function getRoom(): Collection
     {
-        return $this->Room;
+        return $this->room;
     }
 
     public function addRoom(Room $room): self
     {
-        if (!$this->Room->contains($room)) {
-            $this->Room[] = $room;
+        if (!$this->room->contains($room)) {
+            $this->room[] = $room;
             $room->setRegion($this);
         }
 

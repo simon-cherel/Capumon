@@ -40,13 +40,19 @@ class Owner
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity=Room::class, mappedBy="owner", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Room::class, mappedBy="owner")
      */
     private $room;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UnavailablePeriod::class, mappedBy="owner")
+     */
+    private $unavailablePeriod;
 
     public function __construct()
     {
         $this->room = new ArrayCollection();
+        $this->unavailablePeriod = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,6 +132,36 @@ class Owner
             // set the owning side to null (unless already changed)
             if ($room->getOwner() === $this) {
                 $room->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UnavailablePeriod[]
+     */
+    public function getUnavailablePeriod(): Collection
+    {
+        return $this->unavailablePeriod;
+    }
+
+    public function addUnavailablePeriod(UnavailablePeriod $unavailablePeriod): self
+    {
+        if (!$this->unavailablePeriod->contains($unavailablePeriod)) {
+            $this->unavailablePeriod[] = $unavailablePeriod;
+            $unavailablePeriod->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnavailablePeriod(UnavailablePeriod $unavailablePeriod): self
+    {
+        if ($this->unavailablePeriod->removeElement($unavailablePeriod)) {
+            // set the owning side to null (unless already changed)
+            if ($unavailablePeriod->getOwner() === $this) {
+                $unavailablePeriod->setOwner(null);
             }
         }
 

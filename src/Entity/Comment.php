@@ -42,6 +42,16 @@ class Comment
      */
     private $ReservationIdComment;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="comments")
+     */
+    private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="comments")
+     */
+    private $room;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +113,30 @@ class Comment
     public function setReservationIdComment(int $ReservationIdComment): self
     {
         $this->ReservationIdComment = $ReservationIdComment;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?Room $room): self
+    {
+        $this->room = $room;
 
         return $this;
     }

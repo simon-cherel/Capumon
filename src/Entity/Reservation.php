@@ -62,6 +62,21 @@ class Reservation
      */
     private $PaymentTotal;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="reservations")
+     */
+    private $room;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=UnavailablePeriod::class, inversedBy="reservations")
+     */
+    private $unavailablePeriod;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="reservation")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +186,42 @@ class Reservation
     public function setPaymentTotal(float $PaymentTotal): self
     {
         $this->PaymentTotal = $PaymentTotal;
+
+        return $this;
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?Room $room): self
+    {
+        $this->room = $room;
+
+        return $this;
+    }
+
+    public function getUnavailablePeriod(): ?UnavailablePeriod
+    {
+        return $this->unavailablePeriod;
+    }
+
+    public function setUnavailablePeriod(?UnavailablePeriod $unavailablePeriod): self
+    {
+        $this->unavailablePeriod = $unavailablePeriod;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
