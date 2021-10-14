@@ -47,12 +47,13 @@
         </div>
      </nav>
    {% endblock %}{# menu #}
+ 
   {% block body %}
 
   <div class="container body-container">
 
     <main>
-
+ <div class="m-5"> 
       {% block main %}
       <div class="row">
         <div class="col-md-12">
@@ -62,14 +63,14 @@
         </div>
       </div>
       {% endblock %} {# main #}
-
+ </div> 
     </main>
 
   </div> <!-- /.body-container -->
 
   {% block footer %}
  
-  <footer class="fixed-bottom d-flex justify-content-around align-items-center border-top">
+  <footer class="bg-light fixed-bottom d-flex justify-content-around align-items-center border-top">
     <div class="text-center w-25 m-4">
     <span class="text-muted">© Capumon, by Caps & Simon</span>
     </div>
