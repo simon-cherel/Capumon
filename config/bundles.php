@@ -14,9 +14,6 @@ return [
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Camurphy\BootstrapMenuBundle\BootstrapMenuBundle::class => ['all' => true],
-<<<<<<< HEAD
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
-=======
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
->>>>>>> fb34cbe (ajout images et debug)
 ];

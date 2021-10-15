@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\File\File;
 /**
  * @ORM\Entity(repositoryClass=RoomRepository::class)
  * @Vich\Uploadable
- */
+ **/
+
 class Room
 {
     /**
@@ -86,7 +87,7 @@ class Room
     private $imageName;
 
     /**
-    * @Vich\UploadableField(mapping="rooms", fileNameProperty="imageName")
+    *
     * @var File
     */
     private $imageFile;
