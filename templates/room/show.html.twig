@@ -35,6 +35,54 @@
                 <th>Address</th>
                 <td>{{ room.address }}</td>
             </tr>
+            <tr>
+               <th>Comments</th>
+                <td>
+
+               {% for comment in room.comments %}
+
+   <a href="{{ path('comment_show', {'id' : comment.id}) }}">{{ comment.content }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('comment_addtoroom',{'id': room.id})}}">ajouter un commentaire</a>
+
+</td>
+
+            </tr>
+             <tr>
+               <th>Reservations</th>
+                <td>
+
+               {% for reservation in room.reservations %}
+
+   <a href="{{ path('reservation_show', {'id' : reservation.id}) }}">{{ reservation.summary }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('reservation_addtoroom',{'id': room.id})}}">ajouter une reservation</a>
+
+</td>
+
+            </tr>
+             <tr>
+               <th>Unavailable Periods</th>
+                <td>
+
+               {% for unavailable in room.unavailablePeriods %}
+
+   <a href="{{ path('unavailable_period_show', {'id' : unavailable.id}) }}">{{ unavailable.content }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('unavailable_period_addtoroom',{'id': room.id})}}">ajouter une periode d'invalidité</a>
+
+</td>
+
+            </tr>
         </tbody>
     </table>
 

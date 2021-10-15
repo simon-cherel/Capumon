@@ -44,6 +44,17 @@ class UnavailablePeriod
      */
     private $room;
 
+       /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getId();
+        $s .= ' du'. $this->getStart() . 'au' . $this->getEnding();
+        return $s;
+    }
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();

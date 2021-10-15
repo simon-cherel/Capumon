@@ -19,6 +19,34 @@
                 <th>FamilyName</th>
                 <td>{{ client.familyName }}</td>
             </tr>
+            <tr>
+               <th>Reservations</th>
+                <td>
+
+               {% for reservation in client.reservation %}
+
+   <a href="{{ path('reservation_show', {'id' : reservation.reservation_id}) }}">{{ reservation.reservationId }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('reservation_addtoclient',{'id': client.id})}}">ajouter une reservation</a>
+
+</td>
+
+            </tr>
+            <tr>
+               <th>Comments</th>
+                <td>
+              
+               {% for comment in client.comments %}
+
+   <a href="{{ path('comment_show', {'id' : comment.comment_id}) }}">{{ comment.content }}</a>
+
+{% endfor %}
+  <a href="{{ path('comment_addtoclient',{'id': client.id})}}">ajouter un commentaire</a>
+</td>
+            </tr>
         </tbody>
     </table>
 

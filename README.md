@@ -115,3 +115,39 @@ Des BISOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS
 Je t'aime
 
 10. bin/console make:entity
+
+
+
+
+Implémentation de formulaire pour les entités liées
+
+1-Many
+
+Project Todo
+
+Client-Reservation v v v
+
+Client-Comments v v v
+
+Room - Comments v v v
+
+Owner - Room v v v
+
+Owner - UnvailablePeriode v v v
+
+Region - Room v v v
+
+Room - Reservation v v v
+
+UnvailablePeriode - Reservation v v v 
+
+Room - UnvailablePeriode v v v
+
+
+
+ajout string dans entity
+ajout type form Many
+ajout liste many dans show 1
+ajout template add dans Many
+dans tout les controller many ajouter une route pour 1
+

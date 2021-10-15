@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Room;
+use App\Entity\Client;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,4 +93,71 @@ class CommentController extends AbstractController
 
         return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+/**
+ * @Route("/addtoroom/{id}", name="comment_addtoroom", methods="GET|POST")
+ */
+public function addToroom(Request $request, Room $room): Response
+{
+    $comment = new Comment();
+    // already set a room, so as to not need add that field in the form (in commentType)
+    $comment->setRoom($room);
+    $comment->setCompleted(false);
+
+    $form = $this->createForm(CommentType::class, $comment,
+    ['display_room' => false]
+    );
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    $comment->setCreated(new \DateTime());
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($comment);
+    $em->flush();
+
+    $this->get('session')->getFlashBag()->add('message', 'commentaire bien ajouté à la chambre');
+
+    return $this->redirectToRoute('room_show', array('id' => $room->getId() ));
+    }
+
+    return $this->render('comment_period/add.html.twig', [
+    'room' => $room,
+    'comment' => $comment,
+    'form' => $form->createView(),
+    ]);
+}
+
+/**
+ * @Route("/addtoclient/{id}", name="comment_addtoclient", methods="GET|POST")
+ */
+public function addToclient(Request $request, Client $client): Response
+{
+    $comment = new Comment();
+    // already set a client, so as to not need add that field in the form (in commentType)
+    $comment->setClient($client);
+    $comment->setCompleted(false);
+
+    $form = $this->createForm(CommentType::class, $comment,
+    ['display_client' => false]
+    );
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    $comment->setCreated(new \DateTime());
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($comment);
+    $em->flush();
+
+    $this->get('session')->getFlashBag()->add('message', 'commentaire bien ajouté au client');
+
+    return $this->redirectToRoute('client_show', array('id' => $client->getId() ));
+    }
+
+    return $this->render('comment_period/add.html.twig', [
+    'client' => $client,
+    'comment' => $comment,
+    'form' => $form->createView(),
+    ]);
+}
+
 }

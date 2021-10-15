@@ -23,6 +23,22 @@
                 <th>Country</th>
                 <td>{{ region.country }}</td>
             </tr>
+            tr>
+               <th>Room</th>
+                <td>
+
+               {% for room in region.room %}
+
+   <a href="{{ path('room_show', {'id' : room.id}) }}">{{ room.summary }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('room_addtoregion',{'id': region.id})}}">ajouter un chambre</a>
+
+</td>
+
+            </tr>
         </tbody>
     </table>
 

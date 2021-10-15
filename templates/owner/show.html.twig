@@ -27,6 +27,39 @@
                 <th>Country</th>
                 <td>{{ owner.country }}</td>
             </tr>
+            <tr>
+               <th>Room</th>
+                <td>
+
+               {% for room in owner.room %}
+
+   <a href="{{ path('room_show', {'id' : room.id}) }}">{{ room.summary }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('room_addtoowner',{'id': owner.id})}}">ajouter un propriétaire</a>
+
+</td>
+
+            </tr>
+
+            <tr>
+               <th>Unavailable Period</th>
+                <td>
+
+               {% for unavailable in owner.unavailablePeriod%}
+
+   <a href="{{ path('unavailable_period_show', {'id' : unavailable.id}) }}">{{ unavailable.Start . ' au '. unavailable.ending }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('unavailable_period_addtoowner',{'id': owner.id})}}">ajouter une periode d'invalidité</a>
+
+</td>
+
+            </tr>
         </tbody>
     </table>
 

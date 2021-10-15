@@ -18,12 +18,21 @@ class CommentType extends AbstractType
             ->add('author')
             ->add('ReservationIdComment')
         ;
+        if($options['display_client']){
+            $builder->add('client');}
+        if($options['display_room']){
+                $builder->add('room');}
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Comment::class,
+            'display_client' => true,
+            'display_room' => true
         ]);
+        $resolver->setAllowedTypes('display_client', 'bool');
+        $resolver->setAllowedTypes('display_room', 'bool');
     }
 }

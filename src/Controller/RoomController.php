@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Room;
+use App\Entity\Region;
+use App\Entity\Owner;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,4 +93,72 @@ class RoomController extends AbstractController
 
         return $this->redirectToRoute('room_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+/**
+ * @Route("/addtoowner/{id}", name="room_addtoowner", methods="GET|POST")
+ */
+    public function addToowner(Request $request, Owner $owner): Response
+    {
+    $room = new Room();
+    // already set an owner, so as to not need add that field in the form (in RoomType)
+    $room->setOwner($owner);
+    $room->setCompleted(false);
+
+    $form = $this->createForm(RoomType::class, $room,
+    ['display_owner' => false]
+    );
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    $room->setCreated(new \DateTime());
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($room);
+    $em->flush();
+
+    $this->get('session')->getFlashBag()->add('message', 'chambre bien ajoutée au propriétaire');
+
+    return $this->redirectToRoute('owner_show', array('id' => $owner->getId() ));
+    }
+
+    return $this->render('room/add.html.twig', [
+    'owner' => $owner,
+    'room' => $room,
+    'form' => $form->createView(),
+    ]);
+}
+
+/**
+ * @Route("/addtoregion/{id}", name="room_addtoregion", methods="GET|POST")
+ */
+public function addToregion(Request $request, Region $region): Response
+{
+$room = new Room();
+// already set an region, so as to not need add that field in the form (in RoomType)
+$room->setRegion($region);
+$room->setCompleted(false);
+
+$form = $this->createForm(RoomType::class, $room,
+['display_region' => false]
+);
+$form->handleRequest($request);
+if ($form->isSubmitted() && $form->isValid()) {
+$room->setCreated(new \DateTime());
+
+$em = $this->getDoctrine()->getManager();
+$em->persist($room);
+$em->flush();
+
+$this->get('session')->getFlashBag()->add('message', 'chambre bien ajoutée à la region');
+
+return $this->redirectToRoute('region_show', array('id' => $region->getId() ));
+}
+
+return $this->render('room/add.html.twig', [
+'region' => $region,
+'room' => $room,
+'form' => $form->createView(),
+]);
+}
+
 }

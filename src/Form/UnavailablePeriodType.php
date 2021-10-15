@@ -15,12 +15,18 @@ class UnavailablePeriodType extends AbstractType
             ->add('Start')
             ->add('ending')
         ;
+        if($options['display_owner']){
+            $builder->add('owner');}
+            if($options['display_room']){
+                $builder->add('room');}
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => UnavailablePeriod::class,
+            'display_owner' => true,
+            'display_room' => true,
         ]);
     }
 }

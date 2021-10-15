@@ -38,7 +38,17 @@ class Client
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="client")
      */
     private $comments;
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getId() ." ";
+        $s .= $this->getFirstname() . " ";
+        $s .= $this->getFamilyName();
+        return $s;
+    }
     public function __construct()
     {
         $this->reservation = new ArrayCollection();

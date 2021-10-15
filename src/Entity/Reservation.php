@@ -77,6 +77,17 @@ class Reservation
      */
     private $client;
 
+       /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getReservationId();
+  
+        return $s;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

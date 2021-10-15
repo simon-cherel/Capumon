@@ -19,6 +19,22 @@
                 <th>Ending</th>
                 <td>{{ unavailable_period.ending ? unavailable_period.ending|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+             <tr>
+               <th>Reservations</th>
+                <td>
+
+               {% for reservation in unavailable_period.reservations %}
+
+   <a href="{{ path('reservation_show', {'id' : reservation.id}) }}">{{ reservation.summary }}</a>
+
+{% endfor %}
+
+
+    <a href="{{ path('unavailable_period_addtoroom',{'id': unavailable_period.id})}}">ajouter une reservation</a>
+
+</td>
+
+            </tr>
         </tbody>
     </table>
 

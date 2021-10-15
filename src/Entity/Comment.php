@@ -51,7 +51,16 @@ class Comment
      * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="comments")
      */
     private $room;
-
+        /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getCommentId() ." ";
+        $s .= $this->getContent();
+        return $s;
+    }
     public function getId(): ?int
     {
         return $this->id;

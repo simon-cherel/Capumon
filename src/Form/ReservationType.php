@@ -20,14 +20,25 @@ class ReservationType extends AbstractType
             ->add('HostName')
             ->add('GuestName')
             ->add('NumberNights')
-            ->add('PaymentTotal')
-        ;
+            ->add('PaymentTotal');
+            if($options['display_client']){
+            $builder->add('client');}
+            if($options['display_room']){
+                $builder->add('room');}
+             if($options['display_unavailable_period']){
+                    $builder->add('unavailable_period');}
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Reservation::class,
+            'display_client' => true,
+            'display_room' => true,
+            'display_unavailable_period' => true
         ]);
+        $resolver->setAllowedTypes('display_client', 'bool');
+        $resolver->setAllowedTypes('display_room', 'bool');
+        $resolver->setAllowedTypes('display_unavailable_period', 'bool');
     }
 }

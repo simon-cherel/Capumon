@@ -39,6 +39,16 @@ class Region
      */
     private $room;
 
+       /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getId() ." ";
+        $s .= $this->getName();
+        return $s;
+    }
     public function __construct()
     {
         $this->room = new ArrayCollection();

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\UnavailablePeriod;
+use App\Entity\Room;
+use App\Entity\Owner;
 use App\Form\UnavailablePeriodType;
 use App\Repository\UnavailablePeriodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,4 +93,70 @@ class UnavailablePeriodController extends AbstractController
 
         return $this->redirectToRoute('unavailable_period_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+ * @Route("/addtoroom/{id}", name="unavailable_period_addtoroom", methods="GET|POST")
+ */
+public function addToroom(Request $request, Room $room): Response
+{
+    $unavailable = new UnavailablePeriod();
+    // already set a room, so as to not need add that field in the form (in unavailableType)
+    $unavailable->setRoom($room);
+    $unavailable->setCompleted(false);
+
+    $form = $this->createForm(UnavailablePeriodType::class, $unavailable,
+    ['display_room' => false]
+    );
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    $unavailable->setCreated(new \DateTime());
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($unavailable);
+    $em->flush();
+
+    $this->get('session')->getFlashBag()->add('message', 'tâche bien ajoutée au projet');
+
+    return $this->redirectToRoute('room_show', array('id' => $room->getId() ));
+    }
+
+    return $this->render('unavailable_period/add.html.twig', [
+    'room' => $room,
+    'unavailable' => $unavailable,
+    'form' => $form->createView(),
+    ]);
+}
+
+    /**
+ * @Route("/addtoowner/{id}", name="unavailable_period_addtoowner", methods="GET|POST")
+ */
+public function addToowner(Request $request, Owner $owner): Response
+{
+    $unavailable = new UnavailablePeriod();
+    // already set an owner, so as to not need add that field in the form (in unavailableType)
+    $unavailable->setOwner($owner);
+    $unavailable->setCompleted(false);
+
+    $form = $this->createForm(UnavailablePeriodType::class, $unavailable,
+    ['display_owner' => false]
+    );
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    $unavailable->setCreated(new \DateTime());
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($unavailable);
+    $em->flush();
+
+    $this->get('session')->getFlashBag()->add('message', 'indisponibilité bien ajoutée au propriétaire');
+
+    return $this->redirectToRoute('owner_show', array('id' => $owner->getId() ));
+    }
+
+    return $this->render('unavailable_period/add.html.twig', [
+    'owner' => $owner,
+    'unavailable' => $unavailable,
+    'form' => $form->createView(),
+    ]);
+}
 }

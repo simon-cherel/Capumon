@@ -76,6 +76,17 @@ class Room
      */
     private $comments;
 
+       /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getId() ." ";
+        $s .= $this->getDescription();
+        return $s;
+    }
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();

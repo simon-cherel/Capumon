@@ -49,6 +49,18 @@ class Owner
      */
     private $unavailablePeriod;
 
+       /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $s = '';
+        $s .= $this->getId() ." ";
+        $s .= $this->getFirstname() . " ";
+        $s .= $this->getFamilyName();
+        return $s;
+    }
+
     public function __construct()
     {
         $this->room = new ArrayCollection();
