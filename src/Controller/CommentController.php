@@ -102,7 +102,6 @@ public function addToroom(Request $request, Room $room): Response
     $comment = new Comment();
     // already set a room, so as to not need add that field in the form (in commentType)
     $comment->setRoom($room);
-    $comment->setCompleted(false);
 
     $form = $this->createForm(CommentType::class, $comment,
     ['display_room' => false]
@@ -120,7 +119,7 @@ public function addToroom(Request $request, Room $room): Response
     return $this->redirectToRoute('room_show', array('id' => $room->getId() ));
     }
 
-    return $this->render('comment_period/add.html.twig', [
+    return $this->render('comment/add.html.twig', [
     'room' => $room,
     'comment' => $comment,
     'form' => $form->createView(),
@@ -135,7 +134,6 @@ public function addToclient(Request $request, Client $client): Response
     $comment = new Comment();
     // already set a client, so as to not need add that field in the form (in commentType)
     $comment->setClient($client);
-    $comment->setCompleted(false);
 
     $form = $this->createForm(CommentType::class, $comment,
     ['display_client' => false]
@@ -153,7 +151,7 @@ public function addToclient(Request $request, Client $client): Response
     return $this->redirectToRoute('client_show', array('id' => $client->getId() ));
     }
 
-    return $this->render('comment_period/add.html.twig', [
+    return $this->render('comment/add.html.twig', [
     'client' => $client,
     'comment' => $comment,
     'form' => $form->createView(),

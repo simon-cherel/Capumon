@@ -37,6 +37,12 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            // Change content-type according to image's
+            $imagefile = $room->getImageFile();
+            if($imagefile) {
+                $mimetype = $imagefile->getMimeType();
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
             $entityManager->flush();
@@ -103,7 +109,6 @@ class RoomController extends AbstractController
     $room = new Room();
     // already set an owner, so as to not need add that field in the form (in RoomType)
     $room->setOwner($owner);
-    $room->setCompleted(false);
 
     $form = $this->createForm(RoomType::class, $room,
     ['display_owner' => false]
@@ -136,7 +141,6 @@ public function addToregion(Request $request, Region $region): Response
 $room = new Room();
 // already set an region, so as to not need add that field in the form (in RoomType)
 $room->setRegion($region);
-$room->setCompleted(false);
 
 $form = $this->createForm(RoomType::class, $room,
 ['display_region' => false]

@@ -102,7 +102,6 @@ public function addToroom(Request $request, Room $room): Response
     $unavailable = new UnavailablePeriod();
     // already set a room, so as to not need add that field in the form (in unavailableType)
     $unavailable->setRoom($room);
-    $unavailable->setCompleted(false);
 
     $form = $this->createForm(UnavailablePeriodType::class, $unavailable,
     ['display_room' => false]
@@ -135,7 +134,6 @@ public function addToowner(Request $request, Owner $owner): Response
     $unavailable = new UnavailablePeriod();
     // already set an owner, so as to not need add that field in the form (in unavailableType)
     $unavailable->setOwner($owner);
-    $unavailable->setCompleted(false);
 
     $form = $this->createForm(UnavailablePeriodType::class, $unavailable,
     ['display_owner' => false]

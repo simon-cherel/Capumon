@@ -103,7 +103,6 @@ public function addToroom(Request $request, Room $room): Response
     $reservation = new Reservation();
     // already set a room, so as to not need add that field in the form (in reservationType)
     $reservation->setRoom($room);
-    $reservation->setCompleted(false);
 
     $form = $this->createForm(ReservationType::class, $reservation,
     ['display_room' => false]
@@ -121,7 +120,7 @@ public function addToroom(Request $request, Room $room): Response
     return $this->redirectToRoute('room_show', array('id' => $room->getId() ));
     }
 
-    return $this->render('reservation_period/add.html.twig', [
+    return $this->render('reservation/add.html.twig', [
     'room' => $room,
     'reservation' => $reservation,
     'form' => $form->createView(),
