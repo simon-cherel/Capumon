@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+ 
+
+    <main class="form-signin text-center">
+  <form>
+  <img class="mb-4" src="{{ asset("assets/favicon.ico")}}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please register in</h1>
+    <div class="form-floating">
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+ <button class="w-100 btn btn-lg btn-secondary" type="submit">Register in</button>
+       
+    {{ form_end(registrationForm) }}
+</div>
+    </form>
+</main>
+
+{% endblock %}

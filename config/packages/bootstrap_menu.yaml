@@ -26,12 +26,18 @@ bootstrap_menu:
 
     main_droit_1:
       items:
-        sign-up:
-          label: "Sign-up"
-          route: "sign-up"
+        logout:
+          label: "Login"
+          route: "app_login"
 
     main_droit_2:
       items:
         login:
-          label: "Login"
-          route: "login"
+          label: "Register"
+          route: "app_register"
+    main_droit_3:
+      items:
+        login:
+          label: "Logout"
+          route: "app_logout"
+
