@@ -1,21 +1,43 @@
 <?php
 
 namespace App\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Room;
+use App\Form\RoomType;
+use App\Repository\RoomRepository;
+
+
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 class HomeController extends AbstractController
 {
+
+    
+
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
-    {
+    function index(RoomRepository $roomRepository): Response
+    {   
+        $rooms=$roomRepository->findAll();
+        /*
+        $pivot=$rooms[0];
+        for($i=0;$i<count($rooms);$i++){
+            if($rooms[$i].Created>$rooms[$i+1].Created){
+                $pivot=$rooms[$i];
+            }else{
+                $pivot=$rooms[$i+1];
+            }
+        }
+        */
         return $this->render('index.html.twig', [
             'controller_name' => 'HomeController',
             'welcome' => 'Welcome',
+            'rooms' => $rooms,
         ]);
     }
 
@@ -38,4 +60,8 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+
+
+    
 }

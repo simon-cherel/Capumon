@@ -20,7 +20,7 @@
     </div>
       </div>
     
-      <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
+      <div class="col-8 order-1 col-lg-7 text-center text-md-start">
         
         <h1 class="mb-3">Partez à l'aventure dans un Couette et Cafés</h1>
         <p class="lead mb-4">
@@ -34,15 +34,16 @@
 
 
 <h1> Du nouveau ? </h1>
-
+{% for card in rooms%}
 <p><div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <img class="card-img-top" src="" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">{{card.summary}}</h5>
+    <p class="card-text">{{card.description}}</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div></p>
+{% endfor %}
 
 
 
